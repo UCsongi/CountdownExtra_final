@@ -66,13 +66,12 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdown"
-        android:layout_marginStart="-89dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="-91dp"
+        android:layout_marginTop="53dp"
         android:layout_toEndOf="@+id/button_start_pause"
         android:fontFamily="sans-serif"
         android:text="@string/Reset_db"
         android:textColor="@color/colorPrimaryDark"
-        android:visibility="invisible"
         tools:visibility="visible" />
 
     <Button
@@ -80,13 +79,12 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdown"
-        android:layout_marginStart="-88dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginStart="-105dp"
+        android:layout_marginTop="-187dp"
         android:layout_toEndOf="@+id/button_start_pause"
         android:fontFamily="sans-serif"
         android:text="@string/Reset_less"
         android:textColor="@color/colorPrimaryDark"
-        android:visibility="invisible"
         tools:visibility="visible" />
 
 </RelativeLayout>

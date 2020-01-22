@@ -51,12 +51,12 @@ public class DatabaseAdapter {
         }
         return ok;
     }
-    // method to delete a Record with less minutes tham specified
+    // method to delete a Record with less minutes than specified
     public int deleteEntry(Integer minute)
     {
         String where="MINUTES < ?";
         int numberOFEntriesDeleted = db.delete("TIMES", where, new String[]{minute.toString()}) ;
-        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Number of Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
     // method to delete a Record with less minutes tham specified
@@ -64,7 +64,7 @@ public class DatabaseAdapter {
     {
         String where="date > ?";
         int numberOFEntriesDeleted = db.delete("TIMES", where, new String[]{"DateTime(" + date + ")"}) ;
-        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Number of Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
 

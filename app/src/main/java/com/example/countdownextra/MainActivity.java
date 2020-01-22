@@ -150,15 +150,15 @@ public class MainActivity extends AppCompatActivity {
         int hours = (int) (TimeLeftInMilliseconds / 1000) / 3600;
         int minutes = (int) ((TimeLeftInMilliseconds / 1000) % 3600) / 60;
         int seconds = (int) (TimeLeftInMilliseconds / 1000) % 60;
-        int millisecs = (int) (TimeLeftInMilliseconds);
+        int millisecs = (int) (TimeLeftInMilliseconds/1000);
 
         String formattedTime;
         if (hours > 0) {
             formattedTime = String.format(Locale.getDefault(),
-                    "%d:%02d:%02d:%02d", hours, minutes, seconds, millisecs );
+                    "%d:%02d:%02d", hours, minutes, seconds);
         } else {
             formattedTime = String.format(Locale.getDefault(),
-                    "%02d:%02d:%02d", minutes, seconds, millisecs);
+                    "%02d:%02d", minutes, seconds);
         }
 
         CountDownView.setText(formattedTime);
