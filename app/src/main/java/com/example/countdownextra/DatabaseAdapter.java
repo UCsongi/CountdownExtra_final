@@ -38,9 +38,9 @@ public class DatabaseAdapter {
             ContentValues newValues = new ContentValues();
             newValues.put("date", date);
             newValues.put("HOURS", hour);
-            newValues.put("FIRSTNAME", minute);
-            newValues.put("LASTNAME", second);
-            newValues.put("USERNAME", millisecond);
+            newValues.put("MINUTES", minute);
+            newValues.put("SECONDS", second);
+            newValues.put("MILLISECONDS", millisecond);
             db = dbHelper.getWritableDatabase();
             long result=db.insert("TIMES", null, newValues);
             System.out.print(result);
@@ -59,7 +59,7 @@ public class DatabaseAdapter {
         Toast.makeText(context, "Number of Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
-    // method to delete a Record with less minutes tham specified
+    // method to delete a Record with less minutes than specified
     public int deleteEntry(String date)
     {
         String where="date > ?";
@@ -67,5 +67,4 @@ public class DatabaseAdapter {
         Toast.makeText(context, "Number of Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
-
 }
