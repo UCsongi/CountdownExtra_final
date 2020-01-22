@@ -7,4 +7,6 @@
     <string name="Pause">Pause</string>
     <string name="Set">Set</string>
     <string name="Reset">Reset</string>
+    <string name="Reset_db">Clear daily records</string>
+    <string name="Reset_less">Clear worse times</string>
 </resources>

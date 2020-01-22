@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.Date;
-
 public class DatabaseAdapter {
     private static final String DATABASE_NAME = "database.db";
     private static final String ok="OK";
@@ -64,7 +62,7 @@ public class DatabaseAdapter {
     // method to delete a Record with less minutes tham specified
     public int deleteEntry(String date)
     {
-        String where="date < ?";
+        String where="date > ?";
         int numberOFEntriesDeleted = db.delete("TIMES", where, new String[]{"DateTime(" + date + ")"}) ;
         Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;

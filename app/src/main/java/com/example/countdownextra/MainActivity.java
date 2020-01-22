@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonSet;
     private Button ButtonStartPause;
     private Button ButtonReset;
+    private Button ButtonReset_db;
+    private Button ButtonReset_less;
     private DatabaseAdapter databaseAdapter;
     private CountDownTimer CntDwnTimer;
     private boolean IsTimerRunning;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         ButtonSet = findViewById(R.id.button_set);
         ButtonStartPause = findViewById(R.id.button_start_pause);
         ButtonReset = findViewById(R.id.button_reset);
+        ButtonReset_db = findViewById(R.id.button_reset_db);
+        ButtonReset_less = findViewById(R.id.button_reset_less);
 
         ButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +83,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Reset();
+            }
+        });
+        ButtonReset_less.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseAdapter.deleteEntry((int)TimeLeftInMilliseconds);
+            }
+        });
+        ButtonReset_db.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);
+                databaseAdapter.deleteEntry(dateFormat.format(cal.getTime()));
             }
         });
     }
