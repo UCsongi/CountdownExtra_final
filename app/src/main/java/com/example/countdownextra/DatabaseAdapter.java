@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class DatabaseAdapter {
-    static final String DATABASE_NAME = "database.db";
-    String ok="OK";
-    static final int DATABASE_VERSION = 1;
-    static final String DATABASE_CREATE = "create table TIMES( ID integer primary key autoincrement,HOURS INTEGER, MINUTES  INTEGER,SECONDS  INTEGER,MILLISECONDS INTEGER); ";
+    private static final String DATABASE_NAME = "database.db";
+    private static final String ok="OK";
+    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_CREATE = "create table TIMES( ID integer primary key autoincrement, date TEXT, HOURS INTEGER, MINUTES  INTEGER,SECONDS  INTEGER,MILLISECONDS INTEGER); ";
     public static SQLiteDatabase db;
     private final Context context;
     private static DataBaseHelper dbHelper;
@@ -32,10 +34,11 @@ public class DatabaseAdapter {
         db.close();
     }
     // method to insert a record in Table
-    public String insertEntry(Integer hour,Integer minute,Integer second,Integer millisecond)
+    public String insertEntry(String date, Integer hour, Integer minute, Integer second, Integer millisecond)
     {
         try {
             ContentValues newValues = new ContentValues();
+            newValues.put("date", date);
             newValues.put("HOURS", hour);
             newValues.put("FIRSTNAME", minute);
             newValues.put("LASTNAME", second);
@@ -55,6 +58,14 @@ public class DatabaseAdapter {
     {
         String where="MINUTES < ?";
         int numberOFEntriesDeleted = db.delete("TIMES", where, new String[]{minute.toString()}) ;
+        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        return numberOFEntriesDeleted;
+    }
+    // method to delete a Record with less minutes tham specified
+    public int deleteEntry(String date)
+    {
+        String where="date < ?";
+        int numberOFEntriesDeleted = db.delete("TIMES", where, new String[]{"DateTime(" + date + ")"}) ;
         Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }

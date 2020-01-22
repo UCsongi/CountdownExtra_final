@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         databaseAdapter = new DatabaseAdapter(getApplicationContext());
+        databaseAdapter = databaseAdapter.open();
         InputMinutes = findViewById(R.id.input_minutes);
         CountDownView = findViewById(R.id.countdown);
 
@@ -108,8 +113,11 @@ public class MainActivity extends AppCompatActivity {
         CntDwnTimer.cancel();
         IsTimerRunning = false;
         Refresh();
-        databaseAdapter = databaseAdapter.open();
-        databaseAdapter.insertEntry((int)(TimeLeftInMilliseconds / 1000) / 3600, (int)((TimeLeftInMilliseconds / 1000) % 3600) / 60, (int)(TimeLeftInMilliseconds / 1000) % 60,(int)TimeLeftInMilliseconds);
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        databaseAdapter.insertEntry(formattedDate,(int)(TimeLeftInMilliseconds / 1000) / 3600, (int)((TimeLeftInMilliseconds / 1000) % 3600) / 60, (int)(TimeLeftInMilliseconds / 1000) % 60,(int)TimeLeftInMilliseconds);
+
     }
 
     private void Reset() {
